@@ -22,6 +22,7 @@
         <!-- 引入依赖版本 -->
         <lombok.version>1.18.8</lombok.version>
         <log.version>1.7.25</log.version>
+        <guava.version>30.1.1-jre</guava.version>
     </properties>
 
     <dependencies>
@@ -36,6 +37,9 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${log.version}</version>
         </dependency>
+
+
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -51,6 +55,12 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+            </dependency>
+            <!-- guava -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
