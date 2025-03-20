@@ -1,6 +1,7 @@
 package top.ytazwc.rpc.transport.socket;
 
 import lombok.extern.slf4j.Slf4j;
+import top.ytazwc.rpc.config.RpcServiceConfig;
 import top.ytazwc.rpc.registry.provider.ServiceProvider;
 import top.ytazwc.rpc.registry.provider.impl.ZkServiceProviderImpl;
 import top.ytazwc.rpc.utils.ShutDownHookUtil;
@@ -37,6 +38,17 @@ public class RpcServerSocket {
         provider = SingletonFactory.getInstance(ZkServiceProviderImpl.class);
     }
 
+    /**
+     * 服务提供者 进行服务注册
+     * @param config 服务提供者配置信息
+     */
+    public void registerService(RpcServiceConfig config) {
+        provider.publishService(config);
+    }
+
+    /**
+     * 服务端处理客户端请求
+     */
     public void start() {
         try (ServerSocket server = new ServerSocket()) {
             // 获取服务地址
@@ -50,8 +62,7 @@ public class RpcServerSocket {
             // 等待客户端连接
             while ((socket = server.accept()) != null) {
                 log.info("client connected [{}]", socket.getInetAddress());
-                // TODO
-//                threadPool.execute(new SocektRpcRequestHandler(socket));
+                threadPool.execute(new RpcRequestSocketHandler(socket));
             }
             // 关闭连接池
             threadPool.shutdown();
