@@ -112,6 +112,32 @@ public class CuratorUtils {
 
 
     /**
+     * 获取服务下的子节点列表
+     * @param client zk 客户端
+     * @param serviceName 服务名
+     * @return 服务下的子节点
+     */
+    public static List<String> getChildrenNode(CuratorFramework client, String serviceName) {
+        // 若已缓存 则直接返回
+        if (SERVICE_ADDRESS_MAP.containsKey(serviceName)) {
+            return SERVICE_ADDRESS_MAP.get(serviceName);
+        }
+        List<String> result = null;
+        // 服务节点路径
+        String servicePath = ZK_ROOT_PATH + "/" + serviceName;
+
+        try {
+            result = client.getChildren().forPath(servicePath);
+            SERVICE_ADDRESS_MAP.put(serviceName, result);
+            // 并为该服务接口的 子节点注册监听器 监听节点列表变化
+            registerListen(serviceName, client);
+        } catch (Exception e) {
+            log.error("获取路径: [{}] 下的子节点列表失败!", servicePath);
+        }
+        return result;
+    }
+
+    /**
      * 注册服务节点变化监听器
      * @param serviceName 服务节点
      * @param client 客户端
