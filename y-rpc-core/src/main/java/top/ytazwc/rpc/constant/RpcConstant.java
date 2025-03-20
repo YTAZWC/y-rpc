@@ -7,5 +7,12 @@ package top.ytazwc.rpc.constant;
  * @Description
  */
 public interface RpcConstant {
+
+    // 服务 默认监听端口
     int PORT = 9988;
+
+    // 配置文件
+    String RPC_PROPERTIES = "rpc.properties";
+
+
 }
