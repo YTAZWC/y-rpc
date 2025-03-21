@@ -3,12 +3,11 @@ package top.ytazwc.rpc.utils;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Properties;
 
@@ -37,7 +36,7 @@ public class PropertiesFileUtil {
             rpcConfigPath = url.getPath() + fileName;
         }
         try (
-                InputStreamReader reader = new InputStreamReader(Files.newInputStream(Paths.get(rpcConfigPath)), StandardCharsets.UTF_8)
+                InputStreamReader reader = new InputStreamReader(new FileInputStream(rpcConfigPath), StandardCharsets.UTF_8)
         ) {
             properties = new Properties();
             properties.load(reader);

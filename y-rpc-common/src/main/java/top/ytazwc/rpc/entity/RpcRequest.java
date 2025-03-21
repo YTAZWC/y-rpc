@@ -46,7 +46,7 @@ public class RpcRequest implements Serializable {
      * @return 返回唯一服务名称
      */
     public String getRpcServiceName() {
-        return this.getInterfaceName() + this.getGroup() + this.getVersion();
+        return this.getInterfaceName() + ":" + this.getGroup() + ":" + this.getVersion();
     }
 
 }

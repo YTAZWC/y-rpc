@@ -37,7 +37,7 @@ public class RpcServiceConfig {
      * @return 服务唯一标识
      */
     public String getRpcServiceName() {
-        return this.getServiceName() + this.getGroup() + this.getVersion();
+        return this.getServiceName() + ":" + this.getGroup() + ":" + this.getVersion();
     }
 
 }
