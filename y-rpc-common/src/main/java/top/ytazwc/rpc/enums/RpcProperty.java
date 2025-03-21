@@ -14,6 +14,7 @@ import lombok.Getter;
 public enum RpcProperty {
 
     ZK_ADDRESS("rpc.zookeeper.address"),
+    PROVIDER_PORT("rpc.provider.port"),
     ;
 
     private final String value;
