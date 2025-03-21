@@ -166,6 +166,7 @@ public class CuratorUtils {
     public static void clearRegistry(CuratorFramework client, InetSocketAddress address) {
         REGISTER_SERVICE_PATH.stream().parallel().forEach(p -> {
             try {
+                // 找到服务节点 全路径 并删除
                 if (p.endsWith(address.toString())) {
                     client.delete().forPath(p);
                 }

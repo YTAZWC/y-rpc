@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import top.ytazwc.rpc.entity.RpcRequest;
 import top.ytazwc.rpc.exception.RpcException;
 import top.ytazwc.rpc.registry.ServiceDiscovery;
+import top.ytazwc.rpc.registry.zk.ZkServiceDiscoveryImpl;
 import top.ytazwc.rpc.transport.RpcTransport;
+import top.ytazwc.rpc.utils.factory.SingletonFactory;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,7 +28,7 @@ public class RpcClientSocket implements RpcTransport {
     private final ServiceDiscovery serviceDiscovery;
 
     public RpcClientSocket() {
-        this.serviceDiscovery = null;
+        this.serviceDiscovery = SingletonFactory.getInstance(ZkServiceDiscoveryImpl.class);
     }
 
     @Override

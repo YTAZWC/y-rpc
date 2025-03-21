@@ -30,8 +30,8 @@ public class ShutDownHookUtil {
             try {
                 // 获取服务地址
                 InetSocketAddress inetSocketAddress = new InetSocketAddress(InetAddress.getLocalHost().getHostAddress(), PORT);
-                // 清除服务注册信息 TODO
-//                CuratorUtils.clearRegistry(CuratorUtils.getZkClient(), inetSocketAddress);
+                // 清除服务注册信息
+                CuratorUtils.clearRegistry(CuratorUtils.getZkClient(), inetSocketAddress);
             } catch (UnknownHostException ignored) {
             }
             ThreadPoolFactory.shutDownAllThreadPool();
