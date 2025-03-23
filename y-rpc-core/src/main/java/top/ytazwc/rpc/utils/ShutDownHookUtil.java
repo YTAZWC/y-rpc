@@ -1,13 +1,12 @@
 package top.ytazwc.rpc.utils;
 
 import lombok.extern.slf4j.Slf4j;
+import top.ytazwc.rpc.config.RpcConfig;
 import top.ytazwc.rpc.utils.concurrent.ThreadPoolFactory;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-
-import static top.ytazwc.rpc.constant.RpcConstant.PORT;
 
 /**
  * @author 00103943
@@ -29,7 +28,7 @@ public class ShutDownHookUtil {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {
                 // 获取服务地址
-                InetSocketAddress inetSocketAddress = new InetSocketAddress(InetAddress.getLocalHost().getHostAddress(), PORT);
+                InetSocketAddress inetSocketAddress = new InetSocketAddress(InetAddress.getLocalHost().getHostAddress(), RpcConfig.getPort());
                 // 清除服务注册信息
                 CuratorUtils.clearRegistry(CuratorUtils.getZkClient(), inetSocketAddress);
             } catch (UnknownHostException ignored) {

@@ -16,7 +16,7 @@ import java.util.concurrent.*;
  */
 @Slf4j
 @NoArgsConstructor
-public class ThreadPoolFactory {
+public final class ThreadPoolFactory {
 
     // 线程池单例容器
     // 通过线程名来区分不同线程池 线程池-线程池实例

@@ -1,6 +1,7 @@
 package top.ytazwc.rpc.transport.socket;
 
 import lombok.extern.slf4j.Slf4j;
+import top.ytazwc.rpc.config.RpcConfig;
 import top.ytazwc.rpc.config.RpcServiceConfig;
 import top.ytazwc.rpc.registry.provider.ServiceProvider;
 import top.ytazwc.rpc.registry.provider.impl.ZkServiceProviderImpl;
@@ -14,8 +15,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
-
-import static top.ytazwc.rpc.constant.RpcConstant.PORT;
 
 /**
  * @author 花木凋零成兰
@@ -54,7 +53,7 @@ public class RpcServerSocket {
             // 获取服务地址
             String host = InetAddress.getLocalHost().getHostAddress();
             // 绑定服务地址 ip:port
-            server.bind(new InetSocketAddress(host, PORT));
+            server.bind(new InetSocketAddress(host, RpcConfig.getPort()));
             // 注册暂停服务钩子 清除服务信息
             ShutDownHookUtil.getCustomShutdownHook().clearAll();
 

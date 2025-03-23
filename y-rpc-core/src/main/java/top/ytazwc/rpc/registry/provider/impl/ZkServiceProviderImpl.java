@@ -1,6 +1,7 @@
 package top.ytazwc.rpc.registry.provider.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import top.ytazwc.rpc.config.RpcConfig;
 import top.ytazwc.rpc.config.RpcServiceConfig;
 import top.ytazwc.rpc.enums.RpcErrorMessage;
 import top.ytazwc.rpc.exception.RpcException;
@@ -16,8 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
-import static top.ytazwc.rpc.constant.RpcConstant.PORT;
 
 /**
  * @author 00103943
@@ -73,7 +72,7 @@ public class ZkServiceProviderImpl implements ServiceProvider {
         try {
             String host = InetAddress.getLocalHost().getHostAddress();
             this.addService(config);
-            registry.registryService(config.getRpcServiceName(), new InetSocketAddress(host, PORT));
+            registry.registryService(config.getRpcServiceName(), new InetSocketAddress(host, RpcConfig.getPort()));
         } catch (UnknownHostException e) {
             log.error("获取本机域名失败!!!", e);
         }
