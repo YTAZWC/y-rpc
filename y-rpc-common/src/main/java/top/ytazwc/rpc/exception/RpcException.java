@@ -14,12 +14,16 @@ public class RpcException extends RuntimeException {
         super(message);
     }
 
+    public RpcException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
     public RpcException(RpcErrorMessage message, String detail) {
-        this(message.getMessage() + " : " + detail);
+        super(message.getMessage() + " : " + detail);
     }
 
     public RpcException(RpcErrorMessage message) {
-        this(message.getMessage());
+        super(message.getMessage());
     }
 
 }

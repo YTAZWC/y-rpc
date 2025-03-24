@@ -2,6 +2,7 @@ package top.ytazwc.rpc.transport.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import top.ytazwc.rpc.entity.RpcRequest;
+import top.ytazwc.rpc.exception.RpcException;
 import top.ytazwc.rpc.registry.provider.ServiceProvider;
 import top.ytazwc.rpc.registry.provider.impl.ZkServiceProviderImpl;
 import top.ytazwc.rpc.utils.factory.SingletonFactory;
@@ -48,9 +49,9 @@ public class RpcRequestHandler {
             // 通过反射获得被调用的方法
             Method method = service.getClass().getMethod(request.getMethodName(), request.getParamTypes());
             result = method.invoke(service, request.getParameters());
-            log.info("service: [{}] the method: [{}] was successfully called", request.getInterfaceName(), request.getMethodName());
+            log.info("服务: [{}] 调用方法: [{}] 成功!", request.getInterfaceName(), request.getMethodName());
         } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
-            throw new RuntimeException(e);
+            throw new RpcException(e.getMessage(), e);
         }
         return result;
     }
