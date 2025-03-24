@@ -24,8 +24,20 @@ public class RpcConfig {
     private static final String RPC_PROPERTIES = "rpc.properties";
     // 默认端口
     private static final int DEFAULT_PORT = 9988;
-    // 默认服务注册中心
+    // 默认服务注册中心 - 默认 Zookeeper 连接地址
+    private static final String DEFAULT_ZK_ADDRESS = "127.0.0.1:2181";
 
+    /**
+     * 获取 Zookeeper 服务连接地址
+     * @return zk 地址
+     */
+    public static String getZkServerAddress() {
+        String property = getProperty(RpcProperty.ZK_ADDRESS.getValue());
+        if (Objects.isNull(property)) {
+            return DEFAULT_ZK_ADDRESS;
+        }
+        return property;
+    }
 
     /**
      * 获取服务提供者端口

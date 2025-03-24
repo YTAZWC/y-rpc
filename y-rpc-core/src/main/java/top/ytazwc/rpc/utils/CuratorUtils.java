@@ -10,15 +10,16 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
-import top.ytazwc.rpc.enums.RpcProperty;
+import top.ytazwc.rpc.config.RpcConfig;
 import top.ytazwc.rpc.exception.RpcException;
 
 import java.net.InetSocketAddress;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
-
-import static top.ytazwc.rpc.constant.RpcConstant.RPC_PROPERTIES;
 
 /**
  * @author 00103943
@@ -74,10 +75,12 @@ public class CuratorUtils {
      */
     public static CuratorFramework getZkClient() {
         // 检查是否有自定义 Zookeeper 服务地址
-        Properties properties = PropertiesFileUtil.readProperties(RPC_PROPERTIES);
+//        Properties properties = PropertiesFileUtil.readProperties(RPC_PROPERTIES);
         // 确定 zk 服务地址
-        String zkAddress = Objects.nonNull(properties) && Objects.nonNull(properties.getProperty(RpcProperty.ZK_ADDRESS.getValue())) ?
-                properties.getProperty(RpcProperty.ZK_ADDRESS.getValue()) : DEFAULT_ZOOKEEPER_ADDRESS;
+//        String zkAddress = Objects.nonNull(properties) && Objects.nonNull(properties.getProperty(RpcProperty.ZK_ADDRESS.getValue())) ?
+//                properties.getProperty(RpcProperty.ZK_ADDRESS.getValue()) : DEFAULT_ZOOKEEPER_ADDRESS;
+
+        String zkAddress = RpcConfig.getZkServerAddress();
 
         // 如果客户端已经启动 则直接返回
         if (Objects.nonNull(zkClient) && zkClient.getState() == CuratorFrameworkState.STARTED) {
