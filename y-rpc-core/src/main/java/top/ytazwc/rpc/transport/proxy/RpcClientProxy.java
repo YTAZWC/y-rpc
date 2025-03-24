@@ -34,6 +34,11 @@ public class RpcClientProxy implements InvocationHandler {
     // rpc服务配置
     private final RpcServiceConfig config;
 
+    public RpcClientProxy(RpcTransport rpcTransport) {
+        this.rpcTransport = rpcTransport;
+        this.config = new RpcServiceConfig();
+    }
+
     // 获取代理目标类实例
     @SuppressWarnings("unchecked")
     public <T> T getProxy(Class<T> clazz) {
@@ -55,6 +60,7 @@ public class RpcClientProxy implements InvocationHandler {
                 .requestId(UUID.randomUUID().toString())
                 .group(config.getGroup())
                 .version(config.getVersion())
+                .methodName(method.getName())
                 .build();
 
         // 响应

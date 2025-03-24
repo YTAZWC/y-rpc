@@ -6,11 +6,11 @@
     <parent>
         <groupId>top.ytazwc.rpc</groupId>
         <artifactId>y-rpc</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0.socket</version>
     </parent>
 
     <artifactId>y-rpc-common</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0.socket</version>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
