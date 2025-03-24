@@ -46,7 +46,7 @@ public class CuratorUtils {
     // 连接Zookeeper客户端
     private static CuratorFramework zkClient;
     // 默认 Zookeeper 连接地址
-    private static final String DEFAULT_ZOOKEEPER_ADDRESS = "127.0.0.1:2181";
+//    private static final String DEFAULT_ZOOKEEPER_ADDRESS = "127.0.0.1:2181";
 
     /**
      * 注册持久性节点： 持久化到Zookeeper中，不会因为 zk 重启而消失
