@@ -6,7 +6,7 @@
     <parent>
         <groupId>top.ytazwc.rpc</groupId>
         <artifactId>y-rpc</artifactId>
-        <version>1.0.0</version>
+        <version>1.0.0.socket</version>
     </parent>
 
     <artifactId>y-rpc-core</artifactId>
@@ -16,7 +16,7 @@
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- 自定义依赖的版本 -->
-        <common.version>1.0.0</common.version>
+        <common.version>${project.version}</common.version>
     </properties>
 
     <dependencies>
