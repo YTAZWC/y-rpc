@@ -13,7 +13,17 @@ import java.lang.annotation.*;
  */
 @Documented
 @Target({ElementType.TYPE})
-@Import({RpcRegistrar.class})
+@Import({RpcRegistrar.class})       // 使用该注解时 自动导入 RpcRegistrar 配置
 @Retention(RetentionPolicy.RUNTIME)
 public @interface RpcScan {
+
+    String[] value() default {};
+
+    // 基础包路径
+    String[] basePackages() default {};
+
+    // 基础包类位置
+    Class<?>[] basePackageClasses() default {};
+
+
 }
