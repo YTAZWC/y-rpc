@@ -1,6 +1,7 @@
 package top.ytazwc.rpc.transport.socket;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 import top.ytazwc.rpc.config.RpcConfig;
 import top.ytazwc.rpc.config.RpcServiceConfig;
 import top.ytazwc.rpc.registry.provider.ServiceProvider;
@@ -25,6 +26,7 @@ import java.util.concurrent.ExecutorService;
  * <p color="blue">收到rpc客户端的连接请求 根据请求信息区调用并执行对应的方法 并将执行结果响应</p>
  */
 @Slf4j
+@Component("rpcServerSocket")
 public class RpcServerSocket {
 
     // 线程池
