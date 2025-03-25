@@ -6,11 +6,12 @@
 
     <groupId>top.ytazwc.rpc</groupId>
     <artifactId>y-rpc</artifactId>
-    <version>1.0.0.socket</version>
+    <version>1.1.0.socket</version>
     <packaging>pom</packaging>
     <modules>
         <module>y-rpc-common</module>
         <module>y-rpc-core</module>
+        <module>y-rpc-annotation</module>
     </modules>
 
     <properties>
