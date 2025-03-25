@@ -26,7 +26,7 @@ import java.util.concurrent.ExecutorService;
  * <p color="blue">收到rpc客户端的连接请求 根据请求信息区调用并执行对应的方法 并将执行结果响应</p>
  */
 @Slf4j
-@Component("rpcServerSocket")
+@Component
 public class RpcServerSocket {
 
     // 线程池

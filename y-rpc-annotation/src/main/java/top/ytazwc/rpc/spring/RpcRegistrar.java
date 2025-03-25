@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
+import org.springframework.stereotype.Component;
 import org.springframework.util.ClassUtils;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -54,6 +55,7 @@ public class RpcRegistrar implements ImportBeanDefinitionRegistrar, ResourceLoad
         // 注册注解
         scanner.addIncludeFilter(new AnnotationTypeFilter(RpcReference.class));
         scanner.addIncludeFilter(new AnnotationTypeFilter(RpcService.class));
+        scanner.addIncludeFilter(new AnnotationTypeFilter(Component.class));
         // 获取需要扫描的包
         Set<String> basePackages = getBasePackages(importingClassMetadata);
         // 扫描 bean 并管理
