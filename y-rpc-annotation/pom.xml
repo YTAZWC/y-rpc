@@ -6,7 +6,7 @@
     <parent>
         <groupId>top.ytazwc.rpc</groupId>
         <artifactId>y-rpc</artifactId>
-        <version>1.1.0.socket</version>
+        <version>2.1.0.netty</version>
     </parent>
 
     <artifactId>y-rpc-annotation</artifactId>
