@@ -26,6 +26,7 @@
         <curator.version>4.2.0</curator.version>
         <hutool.version>5.8.26</hutool.version>
         <spring.version>5.2.8.RELEASE</spring.version>
+        <kryo.version>4.0.2</kryo.version>
     </properties>
 
     <dependencies>
@@ -90,6 +91,13 @@
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
+            </dependency>
+
+            <!-- kryo -->
+            <dependency>
+                <groupId>com.esotericsoftware</groupId>
+                <artifactId>kryo</artifactId>
+                <version>${kryo.version}</version>
             </dependency>
 
         </dependencies>
