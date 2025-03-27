@@ -23,10 +23,10 @@ public class RpcMessage {
     private byte codec;
 
     // 压缩类型
-    private byte compress;
+    private byte compressType;
 
     // 请求id 占四个字节
-    private byte requestId;
+    private int requestId;
 
     // 具体请求数据 一般占用 16 个字节
     private Object data;
