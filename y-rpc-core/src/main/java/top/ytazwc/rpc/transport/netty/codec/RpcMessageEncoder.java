@@ -5,6 +5,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
 import lombok.extern.slf4j.Slf4j;
 import top.ytazwc.rpc.compress.Compress;
+import top.ytazwc.rpc.compress.gzip.GzipCompress;
 import top.ytazwc.rpc.entity.RpcMessage;
 import top.ytazwc.rpc.enums.SerializerType;
 import top.ytazwc.rpc.exception.MessageCoderException;
@@ -61,7 +62,7 @@ public class RpcMessageEncoder extends MessageToByteEncoder<RpcMessage> {
                 Serializer serializer = SingletonFactory.getInstance(KryoSerializer.class);
                 bodyBytes = serializer.serialize(message.getData());
                 // 压缩方式 目前只采用 gzip
-                Compress compress = SingletonFactory.getInstance(Compress.class);
+                Compress compress = SingletonFactory.getInstance(GzipCompress.class);
                 bodyBytes = compress.compress(bodyBytes);
                 // 得到总长度
                 fullLength += bodyBytes.length;

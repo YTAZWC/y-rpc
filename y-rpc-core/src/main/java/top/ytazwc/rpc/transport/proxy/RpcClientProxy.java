@@ -19,6 +19,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author 00103943
@@ -70,7 +71,8 @@ public class RpcClientProxy implements InvocationHandler {
             response = (RpcResponse<Object>) rpcTransport.sendRpcRequest(request);
         }
         if (rpcTransport instanceof RpcClientNetty) {
-            response = (RpcResponse<Object>) rpcTransport.sendRpcRequest(request);
+            CompletableFuture<RpcResponse<Object>> completableFuture = (CompletableFuture<RpcResponse<Object>>) rpcTransport.sendRpcRequest(request);
+            response = completableFuture.get();
         }
 
         // 对结果进行检查
