@@ -11,6 +11,7 @@ import top.ytazwc.rpc.enums.RpcErrorMessage;
 import top.ytazwc.rpc.enums.RpcResCode;
 import top.ytazwc.rpc.exception.RpcException;
 import top.ytazwc.rpc.transport.RpcTransport;
+import top.ytazwc.rpc.transport.netty.client.RpcClientNetty;
 import top.ytazwc.rpc.transport.socket.RpcClientSocket;
 
 import java.lang.reflect.InvocationHandler;
@@ -66,6 +67,9 @@ public class RpcClientProxy implements InvocationHandler {
         // 响应
         RpcResponse<Object> response = null;
         if (rpcTransport instanceof RpcClientSocket) {
+            response = (RpcResponse<Object>) rpcTransport.sendRpcRequest(request);
+        }
+        if (rpcTransport instanceof RpcClientNetty) {
             response = (RpcResponse<Object>) rpcTransport.sendRpcRequest(request);
         }
 
