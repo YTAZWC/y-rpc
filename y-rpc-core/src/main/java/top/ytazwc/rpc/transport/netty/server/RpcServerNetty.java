@@ -58,10 +58,14 @@ public class RpcServerNetty {
             ServerBootstrap b = new ServerBootstrap();
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class)
+                    // TCP 默认开启 Nagle 算法，该算法作用是尽可能的发送大数据块，减少网络传输；TCP_NODELAY控制是否启用 Nagle 算法
                     .childOption(ChannelOption.TCP_NODELAY, true)
+                    // 是否开启 TCP 底层心跳机制
                     .childOption(ChannelOption.SO_KEEPALIVE, true)
+                    // 表示系统用于临时存放已完成三次握手请求的队列的最大长度， 如果连接建立频繁，服务器处理创建新连接较慢，可以适当调大参数
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .handler(new LoggingHandler(LogLevel.INFO))
+                    // 客户端第一次进行请求的时候才会进行初始化
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
@@ -78,7 +82,7 @@ public class RpcServerNetty {
             // 等待服务端监听端口关闭
             f.channel().closeFuture().sync();
         } catch (InterruptedException e) {
-            log.error("启动服务时发生错误: " + e);
+            log.error("启动服务时发生错误: {}", String.valueOf(e));
         } finally {
             // 关闭资源
             bossGroup.shutdownGracefully();

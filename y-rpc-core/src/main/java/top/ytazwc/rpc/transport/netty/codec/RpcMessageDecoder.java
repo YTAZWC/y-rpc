@@ -87,7 +87,7 @@ public class RpcMessageDecoder extends LengthFieldBasedFrameDecoder {
         // 检查版本
         checkVersion(in);
         // 读取数据长度 占四个字节 int类型
-        int fullLength = in.readByte();
+        int fullLength = in.readInt();
         // 构建rpcMessage
         byte messageType = in.readByte();
         byte codec = in.readByte();
