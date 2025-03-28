@@ -3,7 +3,7 @@
 
 ## 1.0.0.socket
 
-该分支是使用 Netty 作为网络通信实现的 rpc 框架；
+该分支是使用 Java Socket 作为网络通信实现的 rpc 框架；
 
 ## 1.1.0.socket
 
