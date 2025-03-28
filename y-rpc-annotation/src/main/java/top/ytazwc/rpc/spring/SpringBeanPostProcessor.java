@@ -11,8 +11,8 @@ import top.ytazwc.rpc.exception.RpcException;
 import top.ytazwc.rpc.registry.provider.ServiceProvider;
 import top.ytazwc.rpc.registry.provider.impl.ZkServiceProviderImpl;
 import top.ytazwc.rpc.transport.RpcTransport;
+import top.ytazwc.rpc.transport.netty.client.RpcClientNetty;
 import top.ytazwc.rpc.transport.proxy.RpcClientProxy;
-import top.ytazwc.rpc.transport.socket.RpcClientSocket;
 import top.ytazwc.rpc.utils.factory.SingletonFactory;
 
 import java.lang.reflect.Field;
@@ -35,7 +35,7 @@ public class SpringBeanPostProcessor implements BeanPostProcessor {
 
     public SpringBeanPostProcessor() {
         this.serviceProvider = SingletonFactory.getInstance(ZkServiceProviderImpl.class);
-        this.transport = SingletonFactory.getInstance(RpcClientSocket.class);
+        this.transport = SingletonFactory.getInstance(RpcClientNetty.class);
     }
 
     /*
